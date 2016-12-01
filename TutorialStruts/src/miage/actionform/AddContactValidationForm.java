@@ -18,6 +18,7 @@ public class AddContactValidationForm extends ActionForm {
 	public ActionErrors validate(ActionMapping am, HttpServletRequest hsr){
 		ActionErrors ae = new ActionErrors();
 		if(firstName == null){
+			//test
 			//ae.add("first name", new ActionMessage("creation.fn.error.required") );
 			ae.add("error1", new ActionMessage("error.firstname.required"));
 			System.out.println("First name nulll...");
