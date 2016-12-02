@@ -1,3 +1,5 @@
+<%@page import="miage.domaine.Personne"%>
+<%@page import="miage.domaine.ContactDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
@@ -141,6 +143,11 @@
                             <div class="content">
                             
                           <html:form action="/EditContact" styleClass="form-horizontal" >
+                           <% /*int cd = request.getAttribute("num");*/
+                               ContactDAO dc = new ContactDAO();
+                               
+                               Personne p = dc.getPersonne(1);
+                           %>
                                     <div class="row">
                                        
                                         <div class="col-md-3">
