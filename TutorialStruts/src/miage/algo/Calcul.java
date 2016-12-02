@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class Calcul {
 	public Calcul(Map<Integer, List<Double>> map){
@@ -156,9 +158,34 @@ public class Calcul {
 
         if (finder.hasCycle()) {
             System.out.print("Directed cycle: ");
+            List<Integer> listIds = new ArrayList<Integer>();
             for (int v : finder.cycle()) {
+            	listIds.add(v);
             	System.out.print(v + " ");
             }
+            Map<Double, Integer> mapDettes = new HashMap<Double, Integer>();
+            for(int i=0; i<listIds.size();i++){
+            	int pred = listIds.get(i);
+            	int succ;
+            	if (i==listIds.size()-1){
+            		succ = listIds.get(0);
+            	}else{
+            		succ = listIds.get(i+1);
+            	}
+            	for (int j=0; j<result.size();j++){
+        			List<Double> list = result.get(j);
+
+            		if (list.get(0) == pred && list.get(1) == succ){
+            			mapDettes.put(list.get(2), j);
+            			break;
+            		}
+            	}
+            }
+            SortedSet<Double> keys = new TreeSet<Double>(mapDettes.keySet());
+            for (Double key : keys) { 
+            	int index = mapDettes.get(key);
+            	List<Double> list = result.get(index);
+            } 
             System.out.println();
         }
         else {
