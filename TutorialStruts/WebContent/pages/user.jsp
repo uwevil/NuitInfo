@@ -163,14 +163,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                            </div>
+<html:text styleClass="form-control" property="firstName"  value=""  errorStyleClass="error"/>
+        <html:errors property="firstName" />                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                                            </div>
+<html:text styleClass="form-control" property="lastName"  value="" errorStyleClass="error" />
+         <html:errors property="lastName" />                                            </div>
                                         </div>
                                     </div>
 
@@ -178,8 +178,8 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                                            </div>
+ <html:text styleClass="form-control" property="address"  value="" errorStyleClass="error" />
+         <html:errors property="address" />                                            </div>
                                         </div>
                                     </div>
 
@@ -187,19 +187,20 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input type="text" class="form-control" placeholder="City" value="Mike">
-                                            </div>
+  <html:text styleClass="form-control" property="city"  value="" errorStyleClass="error" />
+         <html:errors property="city" />                                            </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                            </div>
+     <html:text styleClass="form-control" property="country"  value="" errorStyleClass="error" />
+           <html:errors property="country" />                                            </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Postal Code</label>
-                                                <input type="number" class="form-control" placeholder="ZIP Code">
+                                             <html:text styleClass="form-control" property="PostalCode"  value="" errorStyleClass="error" />
+           <html:errors property="PostalCode" />  
                                             </div>
                                         </div>
                                     </div>
