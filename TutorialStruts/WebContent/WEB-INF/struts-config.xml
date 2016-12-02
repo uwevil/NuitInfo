@@ -14,12 +14,11 @@
 	<action-mappings>
 		<action path="/ContactCreation" forward="/pages/contactCreation.jsp" />
 		
-		<action path="/AddContact" forward="/pages/success.jsp" />
 		
 		<action path="/AddContact" 
 					type="miage.servletaction.AddContactAction"
 					name="AddContactValidationForm" scope="request"
-					input="/pages/contactCreation.jsp">
+					input="/pages/contactCreation.jsp" validate="false">
 					
 				<forward name="success" path="/pages/success.jsp"/>
 				<forward name="error" path="/pages/error.jsp"/>
