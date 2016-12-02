@@ -7,8 +7,11 @@
 <struts-config>
 
 	<form-beans>
-		<form-bean name="AddContactValidationForm" 
-					type="miage.actionform.AddContactValidationForm"/>
+		<form-bean name="AddContactValidationForm" type="miage.actionform.AddContactValidationForm"/>
+	
+		<form-bean name="EditContactForm" 
+					type="miage.actionform.EditContactForm"/>
+					
 	</form-beans>
 
 	<action-mappings>
@@ -24,6 +27,14 @@
 				<forward name="error" path="/pages/error.jsp"/>
 				
 		</action>
+		
+		<action path="/EditContact" 
+				type="miage.servletaction.EditContact"
+				name="EditContactForm" scope="request" 
+				input="/pages/user.jsp">
+		    <forward name="success" path="/pages/success.jsp"/>
+			<forward name="error"   path="/pages/error.jsp" />
+			</action>
 	</action-mappings>
 	
 	<!-- ========== message file =========================== -->
