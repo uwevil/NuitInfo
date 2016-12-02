@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
 
 
 public class EditContactForm extends ActionForm {
@@ -14,82 +13,17 @@ public class EditContactForm extends ActionForm {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	 long id ;
-	 public long getId() {
+	 public int id=0; 
+	 
+	 
+
+
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public int getPostal() {
-		return postal;
-	}
-	public void setPostal(int postal) {
-		this.postal = postal;
-	}
-	public String getAddresse() {
-		return addresse;
-	}
-	public void setAddresse(String addresse) {
-		this.addresse = addresse;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public String getAboutme() {
-		return aboutme;
-	}
-	public void setAboutme(String aboutme) {
-		this.aboutme = aboutme;
-	}
-	String firstName ;
-	 String lastName ;
-	 
-	String userName;
-     String email;
-	 String city ;
-     int postal;
-	 String addresse;
-     String country ;
-     String aboutme;
-	 
-	 
-
-
-
 	public void reset(ActionMapping mapping, HttpServletRequest request) {
 		  	this.id=0;
 		    //this.firstName=null;
@@ -101,22 +35,57 @@ public class EditContactForm extends ActionForm {
 		      ActionErrors errors = new ActionErrors();
 		      
 		     
-		      
+		     /* 
 		     // ContactDAO cs = new ContactDAO();
 		      
-	
+		      try {
+		      /* if (cs.SearchContact(getId())!=null) {
+			 errors.add("id",new ActionMessage("existe.id.error.required"));
+
+				  }
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		      
-	
+		      if ( getId()<=0 ) {
+			        errors.add("id",new ActionMessage("creation.id.error.required"));
+			        
+			      }
 		      if( getFirstName()== null || getFirstName().length() < 1 ) {
 		        errors.add("firstName",new ActionMessage("creation.firstname.error.required"));
 		      }
 		      if( getLastName()== null || getLastName().length() < 1 ) {
 			        errors.add("lastName",new ActionMessage("creation.lastname.error.required"));
 			 }
-		      if( getLastName()== null || getLastName().length() < 1 ) {
-			        errors.add("lastName",new ActionMessage("creation.lastname.error.required"));
+			 if( getEmail() == null || getEmail().length() < 1  || (!email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ))) {
+			     errors.add("email", new ActionMessage("creation.email.error.required"));
 			 }
-                return errors;
+		
+			 if( ((getZip().length() > 1)|| (getCity().length()>1) || (getStreet().length() > 1 )) && (getCity().length()==0) ) {
+			     errors.add("city", new ActionMessage("creation.city.error.required"));
+			 }
+			 if( ((getCity()!= null)|| (getCountry()!= null) || (getStreet()!= null )) && (getZip().length()==0) ) {
+
+			     errors.add("zip", new ActionMessage("creation.zip.error.required"));
+			 }
+			 if( ((getCity()!= null)|| (getCountry()!= null) || (getZip()!= null )) && (getStreet().length()==0) ) {
+
+			     errors.add("street", new ActionMessage("creation.street.error.required"));
+			 }
+			 if( ((getCity()!= null)|| (getStreet()!= null) || (getZip()!= null )) && (getCountry().length()==0) ) {
+
+			     errors.add("country", new ActionMessage("creation.country.error.required"));
+			 }
+			 try { 
+				 int i = Integer.parseInt(getZip()); 
+				 
+				 } 
+				 catch (Exception e) { 
+				   errors.add("zip", new ActionMessage("no.Integer"));
+				 } */
+			
+			      return errors;
 			 
 	  
 }

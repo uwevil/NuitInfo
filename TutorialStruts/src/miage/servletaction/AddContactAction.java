@@ -26,7 +26,7 @@ public class AddContactAction extends Action {
 			
 			
 			ContactDAO cdao = new ContactDAO();
-			cdao.addContact(Long.parseLong("10"), firstName, lastname, email);
+		//	cdao.addContact(Long.parseLong("10"), firstName, lastname, email);
 			
 			return mapping.findForward("success");
 	}
