@@ -143,11 +143,13 @@
                             <div class="content">
                             
                           <html:form action="/EditContact" styleClass="form-horizontal" >
+                         
                            <% /*int cd = request.getAttribute("num");*/
                                ContactDAO dc = new ContactDAO();
                                
                                Personne p = dc.getPersonne(1);
                            %>
+                                <input type="hidden" value="<%=p.getId()%>" name="id" />
                                     <div class="row">
                                        
                                         <div class="col-md-3">

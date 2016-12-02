@@ -1,6 +1,8 @@
 package miage.servletaction;
 
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +14,8 @@ import org.apache.struts.action.ActionMapping;
 
 
 import miage.actionform.EditContactForm;
+import miage.domaine.ContactDAO;
+import miage.domaine.Personne;
 
 
 
@@ -19,38 +23,39 @@ public class EditContact extends Action {
 	
 	public ActionForward execute(final ActionMapping pMapping,
 			ActionForm pForm, final HttpServletRequest pRequest,
-			final HttpServletResponse pResponse) throws ClassNotFoundException {
+			final HttpServletResponse pResponse) throws ClassNotFoundException, SQLException {
 		
 		final EditContactForm lForm=(EditContactForm)pForm;
 		
-		final long id = lForm.getId();
-		/*final String firstName = lForm.getFirstName();
-		final String lastName = lForm.getLastName();
-		final String email = lForm.getEmail();
-		
-		final String city = lForm.getCity();
-		final String zip = lForm.getZip();
-		final String sreet= lForm.getStreet();
-		final String country= lForm.getCountry();
+	 long id = lForm.getId();
+		String firstName  = lForm.getFirstName();
+		 String lastName = lForm.getLastName();
+		 
+		String userName = lForm.getUserName();
+	     String email = lForm.getEmail();
+		 String city = lForm.getCity() ;
+	     int postal = lForm.getPostal();
+		 String addresse = lForm.getAddresse();
+	     String country = lForm.getCountry() ;
+	     String aboutme = lForm.getAboutme();
 
 		// create a new Contact
-		final DAOContact lDAOContact = new DAOContact();
-		address ad = new address(sreet,city,zip,country);
-		Contact c = new Contact(id, firstName, lastName, email,ad);
+		 ContactDAO lDAOContact = new ContactDAO();
+	
+		Personne ctc = new Personne();
+		ctc.setAboutme(aboutme);
+		ctc.setAddresse(addresse);
+		ctc.setCity(city);
+		ctc.setCountry(country);
+		ctc.setEmail(email);
+		ctc.setFirstName(firstName);
+		ctc.setId(id);
+		ctc.setLastName(lastName);
+		ctc.setPostal(postal);
+		ctc.setUserName(userName);
 		
-		final String lError = lDAOContact.addContact(c);
-if ( !city.equals(null) && !zip.equals(null) && !sreet.equals(null) && !country.equals(null))
-		{final String lError2 = lDAOContact.addaddresse(ad);}
-		
-		
-		if(lError == null)  {
-			// if no exception is raised,  forward "success"
-			return pMapping.findForward("success");
-		}
-		else {
-			// If any exception, return the "error" forward
-			return pMapping.findForward("error");
-		}*/
+		lDAOContact.UpdatePersonne(ctc);
+
 		return null;
 	}
 }

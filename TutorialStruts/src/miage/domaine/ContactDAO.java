@@ -80,4 +80,17 @@ public class ContactDAO {
 		
 	}
 
+public void UpdatePersonne(Personne c) throws ClassNotFoundException, SQLException{
+		
+		String requp = "UPDATE contact SET   name= '"+ c.getFirstName()+"' , username = '"+ c.getUserName()+
+				"', lastname='"+c.getLastName()+"' , addresse= '"+ c.getAddresse()+"' , city='"+c.getCity()+"', contry='"+c.getCountry()+"', postal='"+c.getPostal()+"', aboutme='"+c.getAboutme()+"', email='"+c.getEmail()+"' where id ='"+c.getId()+"' ";
+		Class.forName(driver);
+		cx = DriverManager.getConnection(url, uid, passwd);
+		
+		 preparedStatement = cx.prepareStatement(requp);
+		 preparedStatement.executeUpdate();
+
+		
+		
+	}
 }

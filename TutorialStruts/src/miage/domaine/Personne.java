@@ -2,9 +2,7 @@ package miage.domaine;
 
 public class Personne {
 
-	 long id ;
-	 String firstName ;
-	 String lastName ;
+
 	 
 	 
 	 public long getId() {
@@ -67,6 +65,10 @@ public class Personne {
 	public void setAboutme(String aboutme) {
 		this.aboutme = aboutme;
 	}
+	 long id ;
+	 String firstName ;
+	 String lastName ;
+	 
 	String userName;
      String email;
 	 String city ;
