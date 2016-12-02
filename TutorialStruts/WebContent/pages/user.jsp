@@ -153,14 +153,14 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Username</label>
-                                  <html:text styleClass="form-control" value="michael23" property="Username"  errorStyleClass="error"/>
+                                  <html:text styleClass="form-control" value="<%=p.getUserName()%>" property="Username"  errorStyleClass="error"/>
                                       <html:errors property="Username" />
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
-                                            <html:text styleClass="form-control" property="email"  value="" errorStyleClass="error" />
+                                            <html:text styleClass="form-control" property="email"  value="<%=p.getEmail()%>" errorStyleClass="error" />
          <html:errors property="email" />
                                             </div>
                                         </div>
@@ -170,13 +170,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
-<html:text styleClass="form-control" property="firstName"  value=""  errorStyleClass="error"/>
+<html:text styleClass="form-control" property="firstName"  value="<%=p.getFirstName()%>"  errorStyleClass="error"/>
         <html:errors property="firstName" />                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-<html:text styleClass="form-control" property="lastName"  value="" errorStyleClass="error" />
+<html:text styleClass="form-control" property="lastName"  value="<%=p.getLastName()%>" errorStyleClass="error" />
          <html:errors property="lastName" />                                            </div>
                                         </div>
                                     </div>
@@ -185,7 +185,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Address</label>
- <html:text styleClass="form-control" property="address"  value="" errorStyleClass="error" />
+ <html:text styleClass="form-control" property="address"  value="<%=p.getAddresse()%>" errorStyleClass="error" />
          <html:errors property="address" />                                            </div>
                                         </div>
                                     </div>
@@ -194,19 +194,19 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>City</label>
-  <html:text styleClass="form-control" property="city"  value="" errorStyleClass="error" />
+  <html:text styleClass="form-control" property="city"  value="<%=p.getCity()%>" errorStyleClass="error" />
          <html:errors property="city" />                                            </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Country</label>
-     <html:text styleClass="form-control" property="country"  value="" errorStyleClass="error" />
+     <html:text styleClass="form-control" property="country"  value="<%=p.getCountry()%>" errorStyleClass="error" />
            <html:errors property="country" />                                            </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Postal Code</label>
-                                             <html:text styleClass="form-control" property="PostalCode"  value="" errorStyleClass="error" />
+                                             <html:text styleClass="form-control" property="PostalCode"  value="<%=Integer.toString(p.getPostal())%>" errorStyleClass="error" />
            <html:errors property="PostalCode" />  
                                             </div>
                                         </div>
@@ -216,12 +216,11 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="<%=p.getAboutme()%>" >Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                       <html:submit styleClass="btn btn-info btn-fill pull-right">Edit profil</html:submit>
                                     <div class="clearfix"></div>
                                  </html:form> 
                             </div>
