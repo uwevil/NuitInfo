@@ -7,8 +7,7 @@
 <struts-config>
 
 	<form-beans>
-		<form-bean name="AddContactValidationForm" 
-					type="miage.actionform.AddContactValidationForm"/>
+		<form-bean name="AddContactValidationForm" type="miage.actionform.AddContactValidationForm"/>
 	</form-beans>
 
 	<action-mappings>
