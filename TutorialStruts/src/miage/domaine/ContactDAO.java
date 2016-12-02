@@ -2,139 +2,95 @@ package miage.domaine;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class ContactDAO {
 	private final static String RESOURCE_JDBC = "java:comp/env/jdbc/dsMyDB";
+	/* uniquement pour zaki*/ 
+	String host = "localhost";
+	 String base = "contact";
+	 String url = "jdbc:mysql://localhost:3306/jee";
+	 String driver = "com.mysql.jdbc.Driver";
+		String uid = "root"; String passwd = "zaki";
+		java.sql.Connection cx = null;
+		java.sql.PreparedStatement preparedStatement;
 	
-
 	
-	public void addGroup(String nameGroup){
-		
-		final String driver= "com.mysql.jdbc.Driver";
-		final String url="jdbc:mysql://localhost/weecop_miage_nanterre";
-		final String login="root";
-		final String mdp="root";
-		Statement stmt = null;
-		Connection connect = null;
-		
-		
-		String requete = "insert into 'group' (name) values('"+nameGroup+"')";
-		
-		try{
-			Class.forName(driver);
-			connect= DriverManager.getConnection(url,login,mdp);
-			stmt=connect.createStatement();
-			stmt.executeUpdate(requete); // Exécute la requête
-
-			//System.out.println("Insertion : exécuté");
-
-		}catch(Exception e)
-		{
+	public void addContact(Long id, String firstName, String lastName, 
+					String email) {
+		try {
+			final Context context = new InitialContext();
+			final DataSource  ds = (DataSource) context.lookup(RESOURCE_JDBC);
+			final Connection cnx = ds.getConnection();
+			final PreparedStatement ps = 
+					cnx.prepareStatement("INSERT INTO CONTACT(FIRSTNAME, LASTNAME, EMAIL) VALUES(?, ?, ?)");
+			
+			ps.setString(1, firstName);
+			ps.setString(2, lastName);
+			ps.setString(3, email);
+			
+			ps.executeUpdate();			
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Echec de la connexion");
-		}finally{
-			try{
-
-				if(stmt !=null){
-					stmt.close();
-				}
-				if(connect !=null){
-					connect.close();
-				}
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-			
-		}
-
-	}
-	
-	public void afficheGroup(){
-		final String driver= "com.mysql.jdbc.Driver";
-		final String url="jdbc:mysql://localhost/weecop_miage_nanterre";
-		final String login="root";
-		final String mdp="root";
-		Statement stmt = null;
-		Connection connect = null;
-		
-		
-		String requete = "select * from group";
-		
-		try{
-			Class.forName(driver);
-			connect= DriverManager.getConnection(url,login,mdp);
-			stmt=connect.createStatement();
-			stmt.executeUpdate(requete); // Exécute la requête
-
-			//System.out.println("select : exécuté");
-
-		}catch(Exception e)
-		{
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Echec de la connexion");
-		}finally{
-			try{
-
-				if(stmt !=null){
-					stmt.close();
-				}
-				if(connect !=null){
-					connect.close();
-				}
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-			
-		}
-	}
-
-	
-	public boolean deleteGroup(String idGroup)
-	{
-		boolean result = false;
-		
-		String driver= "com.mysql.jdbc.Driver";
-		String url="jdbc:mysql://localhost/weecop_miage_nanterre ";
-		String login="root";
-		String mdp="root";
-		String requete = "DELETE from group where id='" +idGroup+"'";
-		
-		System.out.println("La requete suppression = " +requete);
-		
-		Statement stmt = null;
-		Connection connect = null;
-		
-		try{
-			Class.forName(driver);
-			connect= DriverManager.getConnection(url,login,mdp);
-			stmt=connect.createStatement();
-			// Exécute la requête
-			stmt.executeUpdate(requete); 
-			result = true;
-			
-			//System.out.println("Passage Supression");
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			System.out.println("Echec de la connexion");
-		}finally{
-			try{
-
-				if(stmt !=null){
-					stmt.close();
-				}
-				if(connect !=null){
-					connect.close();
-				}
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-			
 		}
 		
-		return result;
+		
+	}
+	public Personne getPersonne(int id) throws SQLException, ClassNotFoundException{
+		String Query = "select * from personne where id = '"+id+"' ";
+		Class.forName(driver);
+		cx = DriverManager.getConnection(url, uid, passwd);
+		Personne ctc = new Personne(); 
+		//ctc=null;
+		 preparedStatement = cx.prepareStatement(Query);
+		 	
+			ResultSet result = preparedStatement.executeQuery();
+			int i=0;
+			while (result.next()) {
+				i++;
+				ctc.setAboutme(result.getString("id"));
+				ctc.setAddresse(result.getString("addresse"));
+				ctc.setCity(result.getString("city"));
+				ctc.setCountry(result.getString("contry"));
+				ctc.setEmail(result.getString("email"));
+				ctc.setFirstName(result.getString("name"));
+				ctc.setId(result.getInt("id"));
+				ctc.setLastName(result.getString("lastname"));
+				ctc.setPostal(result.getInt("postal"));
+				ctc.setUserName(result.getString("username"));
+
+			}
+			preparedStatement.close();
+			if (i==0) ctc=null;
+		return ctc;	
+		
 	}
 
+public void UpdatePersonne(Personne c) throws ClassNotFoundException, SQLException{
+		
+		String requp = "UPDATE contact SET   name= '"+ c.getFirstName()+"' , username = '"+ c.getUserName()+
+				"', lastname='"+c.getLastName()+"' , addresse= '"+ c.getAddresse()+"' , city='"+c.getCity()+"', contry='"+c.getCountry()+"', postal='"+c.getPostal()+"', aboutme='"+c.getAboutme()+"', email='"+c.getEmail()+"' where id ='"+c.getId()+"' ";
+		Class.forName(driver);
+		cx = DriverManager.getConnection(url, uid, passwd);
+		
+		 preparedStatement = cx.prepareStatement(requp);
+		 preparedStatement.executeUpdate();
+
+		
+		
+	}
 }
